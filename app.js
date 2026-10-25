@@ -1,0 +1,4 @@
+const select=document.querySelector('#konser_id'),quantity=document.querySelector('#jumlah');
+function updateTotal(){const option=select.selectedOptions[0];quantity.max=Math.min(5,Number(option.dataset.stock||5));document.querySelector('#total').textContent=new Intl.NumberFormat('id-ID',{style:'currency',currency:'IDR',maximumFractionDigits:0}).format(Number(option.dataset.price||0)*Math.max(0,Number(quantity.value)||0));}
+select.addEventListener('change',updateTotal);quantity.addEventListener('input',updateTotal);
+document.querySelectorAll('.choose').forEach(button=>button.addEventListener('click',()=>{select.value=button.dataset.id;quantity.value=1;updateTotal();document.querySelector('#pesan').scrollIntoView({behavior:'smooth'});document.querySelector('#nama').focus({preventScroll:true});}));updateTotal();
